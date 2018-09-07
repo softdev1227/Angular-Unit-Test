@@ -1,0 +1,77 @@
+<mat-card>
+    <mat-list role="list">
+        <mat-list-item *ngIf="editMode !== 'nickname'" role="listitem">
+            <h3 matLine>My nickname:</h3>
+            <p matLine>{{ user.nickname || defaultPlaceholder }}</p>
+            <button (click)="editUsersData('nickname')">
+                <mat-icon matListIcon>edit</mat-icon>
+            </button>
+        </mat-list-item>
+        <mat-list-item *ngIf="editMode === 'nickname'">
+            <mat-form-field  hintLabel="Max 10 characters">
+                <input matInput 
+                    placeholder="My nickname"
+                    name="nickname"
+                    [ngModel]="user.nickname"
+                    #nickname="ngModel"
+                    maxlength="10">
+                <button matSuffix (click)="saveName(nickname)">
+                    <mat-icon matListIcon>save</mat-icon>
+                </button>
+                <mat-hint align="end">{{nickname.value?.length || 0}}/10</mat-hint>
+                <mat-error *ngIf="nickname.errors"> {{ getErrorMessage(nickname) }}</mat-error>
+            </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item *ngIf="editMode !== 'email'" role="listitem">
+            <h3 matLine>My email:</h3>
+            <p matLine>{{ user.email || defaultPlaceholder }}</p>
+            <button (click)="editUsersData('email')">
+                <mat-icon matListIcon>edit</mat-icon>
+            </button>
+        </mat-list-item>
+        <mat-list-item *ngIf="editMode === 'email'">
+            <mat-form-field >
+                <input matInput 
+                    placeholder="My email"
+                    name="email"
+                    [ngModel]="user.email"
+                    #email="ngModel"
+                    required
+                    email>
+                <button matSuffix (click)="saveEmail(email)">
+                    <mat-icon matListIcon>save</mat-icon>
+                </button>
+                <mat-error *ngIf="email.errors">{{ getErrorMessage(email) }}</mat-error>
+            </mat-form-field>
+        </mat-list-item>
+
+        <mat-list-item class="avatar-list-item{" *ngIf="editMode !== 'photoUrl'" role="listitem">
+            <h3 matLine>My avatar:</h3>
+            <div matLine class="img-wrapper small">
+                <img class="img-avatar" *ngIf="user.photoUrl" [src]="user.photoUrl" alt="avatar">
+            </div>
+            <p  *ngIf="!user.photoUrl" matLine>{{ defaultPlaceholder }}</p>
+            <button (click)="editUsersData('photoUrl')">
+                <mat-icon matListIcon>edit</mat-icon>
+            </button>
+        </mat-list-item>
+        <mat-list-item *ngIf="editMode === 'photoUrl'" class="file">
+            <input class="ng-hide" 
+                id="photoUrl" 
+                accept=".png,.jpg"
+                placeholder="My avatar"
+                type="file" 
+                name="photoUrl"
+                #photoUrl
+                (change)="handleFileInput($event.target.files)"/>
+            <label for="photoUrl" 
+                class="md-button md-raised md-primary label-button">Choose a file</label>
+            <span *ngIf="fileToUpload">{{ fileToUpload.name }}</span>
+            <button (click)="saveAvatar()">
+                <mat-icon matListIcon>save</mat-icon>
+            </button>
+            <mat-error *ngIf="photoUrl.errors">{{ getErrorMessage(photoUrl) }}</mat-error>
+        </mat-list-item>
+    </mat-list>
+</mat-card>

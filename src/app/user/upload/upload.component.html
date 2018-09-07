@@ -1,0 +1,40 @@
+<h3>Upload a new image</h3>
+<form [formGroup]="imageUploadForm" (ngSubmit)="onSubmit()">
+
+  <input type="file"
+      id="img-file"
+      class="ng-hide"
+      accept=".png,.jpg"
+      (change)="handleFileInput($event.target.files)"
+      formControlName="imgFile">
+  <label for="img-file" class="md-button md-raised md-primary label-button">Choose an image</label>
+  <span *ngIf="imageToUpload">{{ imageToUpload.name }}</span>
+
+<mat-form-field class="chip-list" formArrayName="tags">
+  <mat-chip-list #tagList>
+    <mat-chip *ngFor="let tag of tagsFormArray.value" 
+             [removable]="removable" 
+             (removed)="remove(tag)">
+      {{ tag }}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input placeholder="Add tag..."
+           [matChipInputFor]="tagList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+</mat-form-field>
+
+<mat-form-field>
+    <input matInput
+        placeholder="Enter image description"
+        name="img-descr"
+        formControlName="descr">
+</mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit"
+      [disabled]="!imageUploadForm.valid"
+      >Upload</button>
+
+</form>

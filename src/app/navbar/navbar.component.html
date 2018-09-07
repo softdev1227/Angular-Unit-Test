@@ -1,0 +1,25 @@
+<nav class="navbar justify-content-between align-items-end">
+    <a class="navbar-brand sac" routerLink="/gallery" [queryParams]="null">
+      <h1>Photki </h1> 
+      <span class="sac pl-1">(made with love)</span>
+    </a>
+    
+    <ul class="nav align-items-end">
+      <li class="nav-item" *ngIf="!checkAuthState()">
+        <a class="nav-link" routerLink="/signup">Sign Up</a>
+      </li>
+      <li class="nav-item" *ngIf="!checkAuthState()">
+        <a class="nav-link" routerLink="/login">Log In</a>
+      </li>
+      <li class="nav-item" *ngIf="checkAuthState()" >
+        <a class="nav-link" (click)="logOut()">Log Out</a>
+      </li>
+      <li class="nav-item" *ngIf="checkAuthState()">
+        <a class="nav-link avatar-img-link" routerLink="/user">
+          <div class="avatar-img">
+              <img [src]="userAvatarImgPath" alt="userAvatar"/>
+          </div>
+          My account</a>
+      </li>
+    </ul>
+  </nav>

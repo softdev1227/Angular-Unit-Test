@@ -1,0 +1,22 @@
+img{
+    max-width: 100%;
+}
+
+.img-info-wrapper{
+    padding: 1rem 0;
+}
+
+.img-info-wrapper p:last-child{
+    margin-bottom: 0;
+}
+
+.img-info-wrapper .img-wrapper{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.btn-lg{
+    padding: .5rem 1rem!important;
+}

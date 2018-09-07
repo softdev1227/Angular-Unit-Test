@@ -1,0 +1,39 @@
+form{
+    display: flex;
+    flex-direction: column;
+  }
+  
+form > *, .mat-form-field {
+    width: 100%;
+    padding-left: 16px;
+}
+
+button{
+    border: none;
+    cursor: pointer;
+}
+
+h3{
+    font-weight: bold!important;
+}
+
+.mat-list .mat-list-item.mat-list-item-with-avatar, .mat-list .mat-list-option.mat-list-item-with-avatar, .mat-nav-list .mat-list-item.mat-list-item-with-avatar, .mat-nav-list .mat-list-option.mat-list-item-with-avatar, .mat-selection-list .mat-list-item.mat-list-item-with-avatar, .mat-selection-list .mat-list-option.mat-list-item-with-avatar {
+    height: 72px!important;
+}
+
+.label-button{
+    display: inline-block;
+    margin-bottom: .5rem;
+    margin-left: 1rem;
+    font-weight: bold;
+    border: 1px solid grey;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.label-button + span {
+    display: inline-block;
+    margin-bottom: .5rem;
+    margin-left: 1rem;
+}
+

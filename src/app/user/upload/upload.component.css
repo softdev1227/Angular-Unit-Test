@@ -1,0 +1,31 @@
+form{
+    display: flex;
+    flex-direction: column;
+  }
+  
+form > * {
+    width: 100%;
+  }
+
+  .label-button{
+    display: inline-block;
+    margin-bottom: .5rem;
+    border: 1px solid grey;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.label-button + span {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+button{
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 992px) {
+  form > button {
+    width: 50%;
+  }
+}

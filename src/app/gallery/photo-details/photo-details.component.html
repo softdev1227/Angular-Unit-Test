@@ -1,0 +1,53 @@
+<div class="fill p-top container-fluid no-gutter">
+  <div class="row" *ngIf="(image|async) as image">
+
+    <div class="col-md-8 mt-3">
+      <img [src]="image.imgPath" alt="">
+    </div>
+
+    <div class="col-md-4">
+        <div class="img-info-wrapper d-flex">
+            <button class="w-100 btn-lg" 
+                  (click)="updateLikes()" 
+                  mat-raised-button 
+                  color="accent">{{(likeState|async) ? 'Unlike' : 'Like'}}
+            </button>
+        </div>
+
+        <div class="img-info-wrapper" *ngIf="image.likesAmount">
+          <p>{{image.likesAmount}} 
+            <span *ngIf="image.likesAmount === 1">like</span>
+            <span *ngIf="image.likesAmount > 1">likes</span>
+          </p>
+        </div>
+
+        <mat-divider></mat-divider>
+
+          <div class="img-info-wrapper">
+              <h3>Tags:</h3>
+              <mat-chip-list>
+                  <mat-chip *ngFor="let tag of image.tags">{{ tag }}</mat-chip>
+              </mat-chip-list>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="img-info-wrapper">
+              <h3>About photo...</h3>
+              <p>{{image.descr}}</p>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="img-info-wrapper">
+            <h3>Author</h3>
+            <div class="d-flex align-items-center">
+              <div class="img-wrapper">
+                  <img [src]="image.author.imgPath" [alt]="image.author.name">
+              </div>
+              <p class="pl-4">{{ image.author.name }}</p>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

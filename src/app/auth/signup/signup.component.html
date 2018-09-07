@@ -1,0 +1,37 @@
+<div class="container fill">
+    <mat-card>
+      <form #signupForm="ngForm" (ngSubmit)="onFormSubmit(signupForm)">
+        <mat-form-field>
+            <input matInput 
+                name="email"
+                placeholder="Enter your email" 
+                ngModel
+                #email="ngModel"
+                email 
+                required>
+                <mat-error *ngIf="email.errors">{{ getErrorMessage('email') }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field hintLabel="Min 6 characters">
+          <input matInput 
+                name="password"
+                placeholder="Enter your password" 
+                [type]="hidePassword ? 'password' : 'text'"
+                ngModel
+                pattern="^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])\S{6,}$"
+                #password="ngModel"
+                required>
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="password.errors">{{ getErrorMessage('password') }}</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button 
+                type="submit"
+                [disabled]="!signupForm.valid"
+                color="primary">Signup</button>
+
+      </form>
+        
+    </mat-card>
+
+</div>

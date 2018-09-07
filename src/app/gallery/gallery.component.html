@@ -1,0 +1,47 @@
+<div class="fill p-top">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-fluid">
+            <mat-form-field>
+                <input matInput
+                     placeholder="Search photos..."
+                     [(ngModel)]="searchText"
+                     class="display-4"/>
+            </mat-form-field>
+            <button mat-icon-button *ngIf="searchText?.length" (click)="searchText = ''">            
+                <mat-icon class="close-icon">close</mat-icon>
+            </button>
+            <div class="d-flex">
+                <span class="pr-3 align-self-center">Sort by:</span>
+                <mat-chip-list>
+                    <mat-chip color="primary" 
+                            [selected]="sortByValue === 'likes'" 
+                            [routerLink]=""
+                            [queryParams]="{order: 'likes'}">likes</mat-chip>
+                    <mat-chip color="primary"
+                            [selected]="sortByValue === 'latest'" 
+                            [routerLink]=""
+                            [queryParams]="{order: 'latest'}">latest</mat-chip>
+                </mat-chip-list>
+            </div>
+        </div>
+      </div>
+      
+      <div class="masonry-wrapper card-columns">
+            <div class="card"  *ngFor="let image of images | async | search: searchText">
+                <a routerLink="{{ image.id }}">
+                    <img class="card-img-top" [src]="image.imgPath" [alt]="">
+                    <div class="card-img-overlay" *ngIf="image.likesAmount">
+                        <mat-icon>favorite</mat-icon>
+                        <span>{{ image.likesAmount }} likes</span>
+                    </div>
+                </a>
+            </div>
+      </div>
+</div>
+
+    
+
+
+
+
+

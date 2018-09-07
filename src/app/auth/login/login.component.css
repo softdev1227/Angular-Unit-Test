@@ -1,0 +1,29 @@
+.mat-card{
+    width: 100%;
+    box-sizing: border-box;
+} 
+
+form{
+    display: flex;
+    flex-direction: column;
+  }
+  
+form > * {
+    width: 100%;
+}
+
+.invalid-feedback{
+    display: block;
+}
+
+.fill{
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (min-width: 992px) {
+    .mat-card{
+        width: 30vw;
+        max-width: 400px;
+    }
+}

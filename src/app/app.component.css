@@ -1,0 +1,116 @@
+.sac{
+    font-family: 'Sacramento', cursive;
+}
+
+*{
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
+}
+
+.ng-hide{
+    display: none;
+}
+
+.img-avatar{
+    width: 100%;
+    height: auto;
+}
+
+.img-wrapper.small{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.mat-list-item.mat-2-line.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted.avatar-list-item{
+    height: 120px!important;
+}
+
+.mat-list .mat-list-item.file .mat-list-item-content{
+    justify-content: space-between;
+}
+
+.fill{
+    min-height: 100vh;
+}
+
+.p-top{
+    padding-top: 70px;
+}
+
+.jumbotron {
+    margin-bottom: 0;
+}
+
+.masonry-wrapper{
+    position: relative;
+    min-height: 100vh;
+    height: auto;
+}
+
+.card-img-top {
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 2px;
+}
+
+.card-columns  .card{
+    border: none;
+    margin-bottom: 0;
+}
+
+.card-columns{
+    column-gap: 0;
+    column-count: 2;
+}
+
+.card-img-overlay{
+    display: flex;
+    align-self: center;
+    justify-content: flex-end;
+    top: auto;
+    padding: 0.75rem;
+}
+
+.card-img-overlay .mat-icon{
+    margin-right: 3px;
+    color: white;
+}
+
+.card-img-overlay span{
+    line-height: 24px;
+    font-size: 14px;
+    color: white;
+}
+
+.jumbotron  .mat-form-field-infix{
+    width: auto!important;
+}
+
+.jumbotron .mat-form-field{
+    font-size: 1.5rem;
+}
+
+@media (min-width: 576px) {
+    .jumbotron {
+        padding: 1rem 0;
+    }
+}
+
+
+@media screen and (min-width: 992px) {
+
+    .card-columns{
+        column-count: 3;
+    }
+}
+
+
+@media screen and (min-width: 1440px) {
+
+    .card-columns{
+        column-count: 4;
+    }
+}

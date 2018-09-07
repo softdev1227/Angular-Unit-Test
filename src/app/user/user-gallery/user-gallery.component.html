@@ -1,0 +1,18 @@
+<h3>Uploaded images</h3>
+<!-- <ngx-masonry [useImagesLoaded]="true">
+    <ngxMasonryItem class="brick" *ngFor="let image of images | async">
+          <div class="card" >
+              <img class="card-img" [src]="image.imgPath" [alt]="">
+              <div class="card-img-overlay">
+              </div>
+            </div>
+    </ngxMasonryItem>
+  </ngx-masonry> -->
+
+  <div class="card-columns">
+    <div class="card" *ngFor="let image of images|async">
+      <a>      
+        <img class="card-img-top" [src]="image.imgPath" alt="">
+      </a>
+    </div>
+  </div>
