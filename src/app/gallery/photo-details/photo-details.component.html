@@ -1,11 +1,11 @@
 <div class="fill p-top container-fluid no-gutter">
   <div class="row" *ngIf="(image|async) as image">
 
-    <div class="col-md-8 mt-3">
+    <div class="col-md-8 mt-3 img-container">
       <img [src]="image.imgPath" alt="">
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4 offset-md-8">
         <div class="img-info-wrapper d-flex">
             <button class="w-100 btn-lg" 
                   (click)="updateLikes()" 
@@ -23,11 +23,13 @@
 
         <mat-divider></mat-divider>
 
+        <!-- No edit mode -->
+        <div *ngIf="!editMode">
           <div class="img-info-wrapper">
-              <h3>Tags:</h3>
-              <mat-chip-list>
-                  <mat-chip *ngFor="let tag of image.tags">{{ tag }}</mat-chip>
-              </mat-chip-list>
+            <h3>Tags:</h3>
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of image.tags">{{ tag }}</mat-chip>
+            </mat-chip-list>
           </div>
 
           <mat-divider></mat-divider>
@@ -36,6 +38,49 @@
               <h3>About photo...</h3>
               <p>{{image.descr}}</p>
           </div>
+        </div>
+
+        <!-- Edit mode -->
+        <div *ngIf="editMode">
+          <form [formGroup]="imageEditForm" (ngSubmit)="onSave(imageEditForm)">
+            <div class="img-info-wrapper">
+              <h3>Tags:</h3>
+              <mat-form-field class="chip-list" formArrayName="tags">
+                <mat-chip-list #tagList>
+                  <mat-chip *ngFor="let tag of tagsFormArray.value" 
+                          [removable]="removable" 
+                          (removed)="remove(tag)">
+                    {{ tag }}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Add tag..."
+                        [matChipInputFor]="tagList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+              </mat-form-field>
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="img-info-wrapper">
+                <h3>About photo...</h3>
+                <mat-form-field>
+                    <input matInput
+                        placeholder="Enter image description"
+                        name="img-descr"
+                        formControlName="descr">
+                </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="primary" type="submit"
+                    [disabled]="!imageEditForm.valid"
+                    >Save</button>
+                        
+          </form>
+        </div>
+          
 
           <mat-divider></mat-divider>
 
@@ -47,6 +92,12 @@
               </div>
               <p class="pl-4">{{ image.author.name }}</p>
             </div>
+          </div>
+
+          <mat-divider></mat-divider>
+
+          <div class="img-info-wrapper">
+            <app-comments></app-comments>
           </div>
     </div>
   </div>

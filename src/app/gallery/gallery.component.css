@@ -1,3 +1,7 @@
 .mat-icon.close-icon{
     color: rgba(0,0,0,.54);
 }
+
+.mat-chip{
+    cursor: pointer;
+}

@@ -11,6 +11,7 @@ form > *, .mat-form-field {
 button{
     border: none;
     cursor: pointer;
+    background: white;
 }
 
 h3{
@@ -37,3 +38,11 @@ h3{
     margin-left: 1rem;
 }
 
+.mat-card{
+    padding: 0!important;
+    box-shadow: none!important;
+}
+
+.mat-list .mat-list-item .mat-list-item-content{
+    padding: 0!important;
+}

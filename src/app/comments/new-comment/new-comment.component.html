@@ -1,0 +1,21 @@
+<form [formGroup]="newCommentForm" 
+      (ngSubmit)="onSubmit(newCommentForm)"
+      *ngIf="isAuthinticated; else loggedOut">
+  <mat-form-field class="w-100">
+    <textarea matInput
+            placeholder="Leave a comment"
+            maxlength="300"
+            formControlName="message"
+            #message></textarea>
+    <mat-hint align="end">{{message.value.length}} / 300</mat-hint>
+  </mat-form-field>
+  <button type="submit" 
+          class="w-100"
+          mat-raised-button 
+          color="primary"
+          [disabled]="!newCommentForm.valid">Save</button>
+</form>
+
+<ng-template #loggedOut>
+  <p>Please <a routerLink="/login">log in</a> to write a comment</p>
+</ng-template>

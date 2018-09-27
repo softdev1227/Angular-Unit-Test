@@ -1,0 +1,8 @@
+<mat-list>
+  <mat-list-item *ngFor="let comment of comments | async">
+    <img matListAvatar [src]="comment?.author.imgPath" [alt]="comment?.author.name">
+    <h3 matLine> {{ comment?.author.name }} </h3>
+    <small matLine class="text-muted">created on: {{ comment?.createdOn | date }}</small>
+    <p matLine>{{ comment?.message }}</p>
+  </mat-list-item>
+</mat-list>

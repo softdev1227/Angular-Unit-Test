@@ -20,3 +20,33 @@ img{
 .btn-lg{
     padding: .5rem 1rem!important;
 }
+form{
+    display: flex;
+    flex-direction: column;
+  }
+  
+form > * {
+    width: 100%;
+  }
+
+.mat-form-field{
+    width: 100%;
+}
+
+button{
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 992px) {
+  form > button {
+    width: 50%;
+  }
+}
+
+
+@media screen and (min-width:992px) {
+    .img-container{
+        position: fixed;
+    }
+}

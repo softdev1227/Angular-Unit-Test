@@ -3,13 +3,14 @@
         <div class="container-fluid">
             <mat-form-field>
                 <input matInput
-                     placeholder="Search photos..."
+                     placeholder="Search by tags..."
                      [(ngModel)]="searchText"
                      class="display-4"/>
+                <button matSuffix mat-button mat-icon-button *ngIf="searchText?.length" (click)="searchText = ''">            
+                    <mat-icon class="close-icon">close</mat-icon>
+                </button>
             </mat-form-field>
-            <button mat-icon-button *ngIf="searchText?.length" (click)="searchText = ''">            
-                <mat-icon class="close-icon">close</mat-icon>
-            </button>
+
             <div class="d-flex">
                 <span class="pr-3 align-self-center">Sort by:</span>
                 <mat-chip-list>
@@ -30,9 +31,21 @@
             <div class="card"  *ngFor="let image of images | async | search: searchText">
                 <a routerLink="{{ image.id }}">
                     <img class="card-img-top" [src]="image.imgPath" [alt]="">
-                    <div class="card-img-overlay" *ngIf="image.likesAmount">
-                        <mat-icon>favorite</mat-icon>
-                        <span>{{ image.likesAmount }} likes</span>
+                    <div class="card-img-overlay" *ngIf="image.likesAmount || image.comments">
+                        <div *ngIf="image.comments">
+                            <mat-icon>mode_comment</mat-icon>
+                            <span>{{ image.comments?.length }} 
+                                <span *ngIf="image.comments?.length === 1" class="d-none d-sm-inline">comment</span>
+                                <span *ngIf="image.comments?.length > 1" class="d-none d-sm-inline">comments</span>
+                            </span>
+                        </div>
+                        <div *ngIf="image.likesAmount">
+                            <mat-icon>favorite</mat-icon>
+                            <span>{{ image.likesAmount }} 
+                                <span *ngIf="image.likesAmount === 1" class="d-none d-sm-inline">like</span>
+                                <span *ngIf="image.likesAmount > 1" class="d-none d-sm-inline">likes</span>
+                            </span>
+                        </div>
                     </div>
                 </a>
             </div>

@@ -49,6 +49,18 @@ export class ImagesService {
     }
   }
 
+  updateImage(id: string, newValues: {tags: string[], descr: string}) {
+    if (this.authService.isAuthenticated()) {
+      const imgRef = this.db.object('/images/' + id);      
+      imgRef.update({ 
+        descr:  newValues.descr,
+        tags: newValues.tags
+      })
+      .then( res => this.alert.openSnackBar('The photo has been updated successfully!'))
+      .catch( err => this.alert.openSnackBar(err.message))
+    }
+  }
+
   getImageLikeState(id: string): Observable<any> {  
     return new Observable<boolean> (observer => {
       if (this.authService.isAuthenticated()) {

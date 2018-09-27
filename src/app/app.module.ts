@@ -29,6 +29,9 @@ import { UploadComponent } from './user/upload/upload.component';
 import { UserGalleryComponent } from './user/user-gallery/user-gallery.component';
 import { SearchPipe } from './shared/pipes/search.pipe';
 import { Provider } from '@angular/compiler/src/core';
+import { CommentsComponent } from './comments/comments.component';
+import { CommentsListComponent } from './comments/comments-list/comments-list.component';
+import { NewCommentComponent } from './comments/new-comment/new-comment.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,9 @@ import { Provider } from '@angular/compiler/src/core';
     UploadComponent,
     UserGalleryComponent,
     SearchPipe,
+    CommentsComponent,
+    CommentsListComponent,
+    NewCommentComponent,
   ],
   imports: [
     BrowserModule,

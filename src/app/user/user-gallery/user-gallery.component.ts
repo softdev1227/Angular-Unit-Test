@@ -15,8 +15,7 @@ export class UserGalleryComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.images = this.userService.getUserImages();
-    console.log(this.images);
+    this.images = this.userService.getUserImages();    
   }
 
 }

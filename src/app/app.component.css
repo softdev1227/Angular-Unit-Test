@@ -36,7 +36,7 @@
 }
 
 .p-top{
-    padding-top: 70px;
+    padding-top: 60px;
 }
 
 .jumbotron {
@@ -69,9 +69,9 @@
 .card-img-overlay{
     display: flex;
     align-self: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     top: auto;
-    padding: 0.75rem;
+    padding: 0 0.5rem;
 }
 
 .card-img-overlay .mat-icon{
@@ -79,10 +79,15 @@
     color: white;
 }
 
-.card-img-overlay span{
+.card-img-overlay div > span {
     line-height: 24px;
     font-size: 14px;
     color: white;
+    vertical-align: super;
+}
+
+.jumbotron {
+    padding: 0 0 1rem;
 }
 
 .jumbotron  .mat-form-field-infix{
@@ -93,6 +98,8 @@
     font-size: 1.5rem;
 }
 
+
+
 @media (min-width: 576px) {
     .jumbotron {
         padding: 1rem 0;
@@ -102,8 +109,16 @@
 
 @media screen and (min-width: 992px) {
 
+    .p-top{
+        padding-top: 70px;
+    }
+
     .card-columns{
         column-count: 3;
+    }
+
+    .card-img-overlay{
+        padding: .75rem;
     }
 }
 
