@@ -61,6 +61,19 @@ export class ImagesService {
     }
   }
 
+  deleteImage(id: string) {
+    if (this.authService.isAuthenticated()) {
+      const imgDbRef = this.db.object('/images/' + id);   
+      const imgStorageRef = firebase.storage().ref().child('/images/' + id);
+      imgDbRef.remove()
+      .then( res => {
+        imgStorageRef.delete().catch(error => console.log(error.message))
+        this.alert.openSnackBar('The photo has been deleted!');
+      })
+      .catch( err => this.alert.openSnackBar(err.message))
+    }
+  }
+
   getImageLikeState(id: string): Observable<any> {  
     return new Observable<boolean> (observer => {
       if (this.authService.isAuthenticated()) {

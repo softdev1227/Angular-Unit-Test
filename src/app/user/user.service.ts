@@ -12,7 +12,6 @@ import { Image } from '../shared/models/image.model';
 export class UserService {
 
   userAvatarChanged = new Subject<string>();
-
   userDefAvatar: string = "./assets/images/def_avatar.svg";
   userAvatarRef: AngularFireStorageReference;
   downloadURL: Observable<string>;

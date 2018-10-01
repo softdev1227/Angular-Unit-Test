@@ -9,6 +9,7 @@ import { MessagesService } from '../../shared/services/messages.service';
 import { Observable, Subscription } from 'rxjs';
 import { UserService } from '../user.service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AlertService } from '../../shared/services/alert.service';
 
 @Component({
   selector: 'app-user-details',
@@ -29,7 +30,8 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   constructor( private authService: AuthService, 
               private msgService: MessagesService,
               private userService: UserService,
-              private afAuth: AngularFireAuth) { }
+              private afAuth: AngularFireAuth,
+              private alert: AlertService) { }
 
   ngOnInit() {
     this.curUser = this.afAuth.auth.currentUser;
@@ -63,11 +65,11 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
       displayName: formControl.value
     })
     .then(() => {
-      console.log('updated succsessfully');
+      this.alert.openSnackBar('Updated successfully!')
       this.user.nickname = this.afAuth.auth.currentUser.displayName;
     })
     .catch((error) => {
-      console.log(error);
+      this.alert.openSnackBar(error.message)
     });
   }
 
@@ -75,10 +77,10 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.editMode = null;
     this.curUser.updateEmail(formControl.value)
     .then(() => {
-      console.log('updated succsessfully');
+      this.alert.openSnackBar('Updated successfully!')
       this.user.email = this.afAuth.auth.currentUser.email;
     }).catch((error) => {
-      console.log(error);
+      this.alert.openSnackBar(error.message)
     });
   }
 
@@ -90,9 +92,9 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.editMode = null;
     this.userService.uploadUserAvatar(this.fileToUpload)
       .then(() => {  
-        console.log('updated succsessfully');      
+        this.alert.openSnackBar('Updated successfully!')
       }).catch((error) => {
-        console.log(error);
+        this.alert.openSnackBar(error.message)
       });
   }
 

@@ -33,11 +33,9 @@ export class UploadService implements OnInit {
 
   uploadImage(formValues, file: File) {
     const id = this.idGenerator();    
-    this.userImagesRef = this.storage.ref('photos').child(id + file.name);
+    this.userImagesRef = this.storage.ref('images').child(id);
     const curUser = this.afAuth.auth.currentUser;
-    const creationDate = Date.now();
-    console.log(creationDate);
-    
+    const creationDate = Date.now();    
 
     return this.userImagesRef.put(file)
       .then(snapshot => {

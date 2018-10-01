@@ -33,15 +33,10 @@ form > * {
     width: 100%;
 }
 
-button{
+form > button{
   border: none;
   cursor: pointer;
-}
-
-@media screen and (min-width: 992px) {
-  form > button {
-    width: 50%;
-  }
+  width: 100%;
 }
 
 

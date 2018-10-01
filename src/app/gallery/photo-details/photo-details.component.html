@@ -47,7 +47,7 @@
               <h3>Tags:</h3>
               <mat-form-field class="chip-list" formArrayName="tags">
                 <mat-chip-list #tagList>
-                  <mat-chip *ngFor="let tag of tagsFormArray.value" 
+                  <mat-chip *ngFor="let tag of tagsFormArray?.value" 
                           [removable]="removable" 
                           (removed)="remove(tag)">
                     {{ tag }}
@@ -74,11 +74,14 @@
                 </mat-form-field>
             </div>
 
-            <button mat-raised-button color="primary" type="submit"
+            <button type="submit" 
+                    class="mb-2" mat-raised-button color="primary"
                     [disabled]="!imageEditForm.valid"
                     >Save</button>
-                        
+                      
           </form>
+          <button class="mb-2" mat-raised-button color="warn"
+                    (click)="onDelete()">Delete photo</button>
         </div>
           
 
@@ -88,9 +91,9 @@
             <h3>Author</h3>
             <div class="d-flex align-items-center">
               <div class="img-wrapper">
-                  <img [src]="image.author.imgPath" [alt]="image.author.name">
+                  <img [src]="image.author.imgPath || defAvatarPath" [alt]="image.author.name || 'anonymous'">
               </div>
-              <p class="pl-4">{{ image.author.name }}</p>
+              <p class="pl-4">{{ image.author.name || 'anonymous' }}</p>
             </div>
           </div>
 

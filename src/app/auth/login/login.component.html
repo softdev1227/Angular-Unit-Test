@@ -26,7 +26,6 @@
           <mat-error *ngIf="password.errors">{{ getErrorMessage('password') }}</mat-error>
         </mat-form-field>
 
-        <div *ngIf="serverErrorMsg" class="invalid-feedback pb-2">{{ serverErrorMsg }}</div>
         <button mat-raised-button 
             type="submit"
             [disabled]="!loginForm.valid"
